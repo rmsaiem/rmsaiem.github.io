@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Your Name | Portfolio</title>
+  <style>
+    body{font-family:Arial;margin:0;background:#0b0b0b;color:#fff}
+    header{padding:40px 20px;max-width:1000px;margin:auto}
+    h1{margin:0;font-size:34px}
+    p{opacity:.8;line-height:1.6}
+    .wrap{max-width:1000px;margin:auto;padding:0 20px 60px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+    .card{background:#151515;border-radius:14px;overflow:hidden}
+    .card img{width:100%;height:260px;object-fit:cover;display:block}
+    .card div{padding:12px}
+    a{color:#7dd3fc;text-decoration:none}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Your Name</h1>
+    <p>Photographer • Documentation • Projects</p>
+    <p><a href="#photos">Photography</a> · <a href="#projects">Projects</a> · <a href="#contact">Contact</a></p>
+  </header>
+
+  <div class="wrap" id="photos">
+    <h2>Featured Photos</h2>
+    <div class="grid">
+      <div class="card"><img src="https://picsum.photos/600/400?1"><div>Photo title 1</div></div>
+      <div class="card"><img src="https://picsum.photos/600/400?2"><div>Photo title 2</div></div>
+      <div class="card"><img src="https://picsum.photos/600/400?3"><div>Photo title 3</div></div>
+      <div class="card"><img src="https://picsum.photos/600/400?4"><div>Photo title 4</div></div>
+    </div>
+    <p style="opacity:.7;margin-top:10px;">Replace these images with your own later.</p>
+  </div>
+
+  <div class="wrap" id="projects">
+    <h2>Projects / Documentation</h2>
+    <div class="card" style="padding:16px;border-radius:14px;">
+      <b>Project Title</b>
+      <p>Goal: …</p>
+      <p>What I did: …</p>
+      <p>Tools: …</p>
+    </div>
+  </div>
+
+  <div class="wrap" id="contact">
+    <h2>Contact</h2>
+    <p>Email: yourmail@example.com</p>
+    <p>Instagram: @yourhandle</p>
+  </div>
+</body>
+</html>
