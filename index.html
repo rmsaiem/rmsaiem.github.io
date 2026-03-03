@@ -1,54 +1,380 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Raiyan Meem Saiem | Portfolio</title>
+  <meta name="description" content="Cinematic portfolio of Raiyan Meem Saiem — photos, certificates, and personal work." />
+
   <style>
-    body{font-family:Arial;margin:0;background:#0b0b0b;color:#fff}
-    header{padding:40px 20px;max-width:1000px;margin:auto}
-    h1{margin:0;font-size:34px}
-    p{opacity:.8;line-height:1.6}
-    .wrap{max-width:1000px;margin:auto;padding:0 20px 60px}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-    .card{background:#151515;border-radius:14px;overflow:hidden}
-    .card img{width:100%;height:260px;object-fit:cover;display:block}
-    .card div{padding:12px}
-    a{color:#7dd3fc;text-decoration:none}
+    :root{
+      --bg:#07070a;
+      --panel:#0d0e12;
+      --text:#f3f4f6;
+      --muted:#a7aab5;
+      --line:rgba(255,255,255,.10);
+      --glow:rgba(120,170,255,.22);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;padding:0;
+      background:
+        radial-gradient(1200px 600px at 15% -10%, rgba(120,170,255,.18), transparent 55%),
+        radial-gradient(900px 600px at 85% 5%, rgba(255,255,255,.07), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", sans-serif;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+
+    /* Top bar */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(to bottom, rgba(7,7,10,.78), rgba(7,7,10,.35));
+      border-bottom:1px solid var(--line);
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .brand{display:flex;gap:10px;align-items:center;letter-spacing:.6px;font-weight:800}
+    .dot{width:10px;height:10px;border-radius:999px;background:linear-gradient(135deg,#8ab6ff,#ffffff);box-shadow:0 0 24px var(--glow)}
+    .links{display:flex;gap:18px;align-items:center;font-weight:650;color:var(--muted)}
+    .links a{padding:8px 10px;border-radius:12px;transition:.2s}
+    .links a:hover{background:rgba(255,255,255,.06);color:var(--text)}
+    .btn{
+      background:linear-gradient(135deg, rgba(138,182,255,.22), rgba(255,255,255,.08));
+      border:1px solid rgba(255,255,255,.14);
+      padding:9px 12px;border-radius:14px;color:var(--text)
+    }
+
+    /* Hero */
+    .hero{padding:72px 0 26px}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:stretch}
+    @media (max-width: 900px){.hero-grid{grid-template-columns:1fr}.links{gap:8px}.links a{padding:8px}}
+    .card{
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border-radius:var(--radius);
+      box-shadow: 0 18px 55px rgba(0,0,0,.55);
+      overflow:hidden;
+    }
+    .hero-left{padding:26px 22px 22px}
+    .kicker{color:var(--muted);letter-spacing:2.2px;font-size:12px;text-transform:uppercase}
+    h1{margin:10px 0 8px;font-size:46px;line-height:1.05;letter-spacing:-.6px}
+    .sub{color:var(--muted);font-size:16px;line-height:1.7;max-width:56ch}
+    .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .cta a{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:10px 14px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      transition:.2s;font-weight:700
+    }
+    .cta a:hover{transform:translateY(-1px);background:rgba(255,255,255,.06)}
+    .cta a.primary{
+      background:linear-gradient(135deg, rgba(138,182,255,.25), rgba(255,255,255,.10));
+      box-shadow:0 0 0 1px rgba(255,255,255,.06), 0 18px 50px rgba(0,0,0,.55);
+    }
+    .hero-right{display:grid;grid-template-rows:1fr auto}
+    .hero-photo{position:relative;min-height:320px}
+    .hero-photo img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.02) contrast(1.05);transform:scale(1.02)}
+    .hero-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg, rgba(7,7,10,.86), rgba(7,7,10,.08))}
+    .mini{
+      display:flex;gap:10px;flex-wrap:wrap;
+      padding:14px;border-top:1px solid var(--line);
+      background:rgba(0,0,0,.22);
+      color:var(--muted);font-size:13px;line-height:1.55
+    }
+    .mini b{color:var(--text)}
+
+    /* Sections */
+    section{padding:34px 0}
+    .section-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:0 0 14px}
+    .section-title h2{margin:0;font-size:20px;letter-spacing:.2px}
+    .section-title p{margin:0;color:var(--muted);font-size:13px}
+
+    /* Gallery grid */
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
+    .shot{
+      grid-column: span 3;
+      border-radius:16px;overflow:hidden;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      position:relative;cursor:pointer;transition:.2s
+    }
+    .shot:hover{transform:translateY(-2px)}
+    .shot img{width:100%;height:260px;object-fit:cover;display:block;filter:contrast(1.03)}
+    .cap{
+      position:absolute;left:0;right:0;bottom:0;
+      padding:12px 12px 10px;
+      background:linear-gradient(0deg, rgba(7,7,10,.92), rgba(7,7,10,0));
+    }
+    .cap .t{font-weight:800;font-size:13px}
+    .cap .m{color:var(--muted);font-size:12px;margin-top:2px}
+    @media (max-width: 1000px){.shot{grid-column: span 6}}
+    @media (max-width: 560px){.shot{grid-column: span 12} h1{font-size:38px}}
+
+    /* Tiles */
+    .cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width: 900px){.cols{grid-template-columns:1fr}}
+    .tile{
+      padding:18px;border-radius:var(--radius);
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    }
+    .tile h3{margin:0 0 8px;font-size:16px}
+    .tile p{margin:0;color:var(--muted);line-height:1.7}
+    .meta{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
+    .tag{
+      font-size:12px;color:var(--muted);
+      padding:6px 10px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.03);
+    }
+
+    /* Footer */
+    .footer{padding:28px 0 40px;border-top:1px solid var(--line);color:var(--muted)}
+    .footer a{color:var(--text)}
+    .split{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+    /* Modal */
+    .modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.75);z-index:100;padding:18px}
+    .modal.open{display:grid}
+    .modal-card{
+      width:min(980px, 100%);
+      border-radius:18px;overflow:hidden;
+      border:1px solid rgba(255,255,255,.14);
+      background:#07070a;
+      box-shadow: 0 28px 80px rgba(0,0,0,.75);
+    }
+    .modal-img{width:100%;max-height:76vh;object-fit:contain;display:block;background:#06060a}
+    .modal-bar{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:12px 14px;border-top:1px solid rgba(255,255,255,.10);
+      color:var(--muted);font-size:13px
+    }
+    .x{
+      cursor:pointer;padding:8px 10px;border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      color:var(--text);font-weight:800
+    }
   </style>
 </head>
+
 <body>
-  <header>
-    <h1>Your Name</h1>
-    <p>Photographer • Documentation • Projects</p>
-    <p><a href="#photos">Photography</a> · <a href="#projects">Projects</a> · <a href="#contact">Contact</a></p>
+  <div class="topbar">
+    <div class="wrap nav">
+      <div class="brand">
+        <span class="dot"></span>
+        <span>Raiyan Meem Saiem</span>
+      </div>
+
+      <div class="links">
+        <a href="#work">Photos</a>
+        <a href="#projects">Sections</a>
+        <a href="#about">About</a>
+        <a href="#contact" class="btn">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="wrap hero">
+    <div class="hero-grid">
+      <div class="card hero-left">
+        <div class="kicker">CINEMATIC PORTFOLIO</div>
+        <h1>Cinematic frames. Clean work.</h1>
+        <p class="sub">
+          I am Raiyan Meem Saiem. I share my best photos and my work here.
+          I keep the style clean and cinematic. I also document my progress and projects.
+        </p>
+
+        <div class="cta">
+          <a class="primary" href="#work">View Photos</a>
+          <a href="#projects">View Sections</a>
+          <a href="#contact">Contact Me</a>
+        </div>
+      </div>
+
+      <div class="card hero-right">
+        <div class="hero-photo">
+          <!-- Upload your own best photo as hero.jpg and replace this line with: src="hero.jpg" -->
+          <img src="https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=1600&q=80" alt="Hero photo" />
+        </div>
+        <div class="mini">
+          <div>📸 <b>Photos:</b> Certificates • Personal • Others</div>
+          <div>✉️ <b>Email:</b> <a href="mailto:raiyan.m.saiem@gmail.com">raiyan.m.saiem@gmail.com</a></div>
+          <div>🔗 <b>Facebook:</b> <a href="https://www.facebook.com/raiyan.m.saiem" target="_blank" rel="noopener">raiyan.m.saiem</a></div>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <div class="wrap" id="photos">
-    <h2>Featured Photos</h2>
-    <div class="grid">
-      <div class="card"><img src="https://picsum.photos/600/400?1"><div>Photo title 1</div></div>
-      <div class="card"><img src="https://picsum.photos/600/400?2"><div>Photo title 2</div></div>
-      <div class="card"><img src="https://picsum.photos/600/400?3"><div>Photo title 3</div></div>
-      <div class="card"><img src="https://picsum.photos/600/400?4"><div>Photo title 4</div></div>
+  <main class="wrap">
+    <!-- PHOTOS -->
+    <section id="work">
+      <div class="section-title">
+        <h2>Photos</h2>
+        <p>Click a photo to view large.</p>
+      </div>
+
+      <div class="grid">
+        <!-- Upload your images (e.g., cert1.jpg, personal1.jpg, other1.jpg, featured1.jpg) and replace src -->
+        <div class="shot" data-title="Certificates" data-meta="Portfolio • Documents">
+          <img src="https://picsum.photos/900/700?1" alt="Certificates">
+          <div class="cap"><div class="t">Certificates</div><div class="m">Portfolio • Documents</div></div>
+        </div>
+
+        <div class="shot" data-title="Personal" data-meta="Portfolio • Personal">
+          <img src="https://picsum.photos/900/700?2" alt="Personal">
+          <div class="cap"><div class="t">Personal</div><div class="m">Portfolio • Personal</div></div>
+        </div>
+
+        <div class="shot" data-title="Others" data-meta="Portfolio • Others">
+          <img src="https://picsum.photos/900/700?3" alt="Others">
+          <div class="cap"><div class="t">Others</div><div class="m">Portfolio • Others</div></div>
+        </div>
+
+        <div class="shot" data-title="Featured" data-meta="Best shots">
+          <img src="https://picsum.photos/900/700?4" alt="Featured">
+          <div class="cap"><div class="t">Featured</div><div class="m">Best shots</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTIONS (your requested extra section) -->
+    <section id="projects">
+      <div class="section-title">
+        <h2>Sections</h2>
+        <p>Use this area for certificates, achievements, or documentation.</p>
+      </div>
+
+      <div class="cols">
+        <div class="tile">
+          <h3>Certificates</h3>
+          <p>
+            Add your important certificates here. Keep it short. Add the title, institute, and year.
+            You can also add a photo or PDF link later.
+          </p>
+          <div class="meta">
+            <span class="tag">Academic</span>
+            <span class="tag">Training</span>
+            <span class="tag">Workshops</span>
+          </div>
+        </div>
+
+        <div class="tile">
+          <h3>Personal Work</h3>
+          <p>
+            Add personal projects here. Mention what you wanted to create. Add 1–2 lines about the result.
+          </p>
+          <div class="meta">
+            <span class="tag">Photography</span>
+            <span class="tag">Creative</span>
+            <span class="tag">Portfolio</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-title">
+        <h2>About</h2>
+        <p>Short and clean.</p>
+      </div>
+
+      <div class="tile">
+        <p>
+          I am Raiyan Meem Saiem. I take photos of people and real moments.
+          I also keep records of my achievements and certificates. I like clean framing, soft light,
+          and strong contrast. I am open to collaborations and creative work.
+        </p>
+        <div class="meta">
+          <span class="tag">Certificates</span>
+          <span class="tag">Personal</span>
+          <span class="tag">Others</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <p>Simple and premium.</p>
+      </div>
+
+      <div class="cols">
+        <div class="tile">
+          <h3>Email</h3>
+          <p><a href="mailto:raiyan.m.saiem@gmail.com">raiyan.m.saiem@gmail.com</a></p>
+          <div class="meta">
+            <span class="tag">Fast reply</span>
+            <span class="tag">Collabs welcome</span>
+          </div>
+        </div>
+
+        <div class="tile">
+          <h3>Social</h3>
+          <p>
+            Facebook: <a href="https://www.facebook.com/raiyan.m.saiem" target="_blank" rel="noopener">raiyan.m.saiem</a>
+          </p>
+          <div class="meta">
+            <span class="tag">Message anytime</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      <div class="split">
+        <div>© <span id="y"></span> Raiyan Meem Saiem</div>
+        <div><a href="#work">Back to top ↑</a></div>
+      </div>
     </div>
-    <p style="opacity:.7;margin-top:10px;">Replace these images with your own later.</p>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-card">
+      <img class="modal-img" id="modalImg" alt="Large view" />
+      <div class="modal-bar">
+        <div><span id="modalTitle"></span> <span style="opacity:.7">—</span> <span id="modalMeta"></span></div>
+        <div class="x" id="closeBtn">Close ✕</div>
+      </div>
+    </div>
   </div>
 
-  <div class="wrap" id="projects">
-    <h2>Projects / Documentation</h2>
-    <div class="card" style="padding:16px;border-radius:14px;">
-      <b>Project Title</b>
-      <p>Goal: …</p>
-      <p>What I did: …</p>
-      <p>Tools: …</p>
-    </div>
-  </div>
+  <script>
+    // year
+    document.getElementById('y').textContent = new Date().getFullYear();
 
-  <div class="wrap" id="contact">
-    <h2>Contact</h2>
-    <p>Email: yourmail@example.com</p>
-    <p>Instagram: @yourhandle</p>
-  </div>
+    // modal open/close
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modalImg');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalMeta = document.getElementById('modalMeta');
+    const closeBtn = document.getElementById('closeBtn');
+
+    document.querySelectorAll('.shot').forEach(card => {
+      card.addEventListener('click', () => {
+        const img = card.querySelector('img');
+        modalImg.src = img.src;
+        modalTitle.textContent = card.dataset.title || 'Photo';
+        modalMeta.textContent = card.dataset.meta || '';
+        modal.classList.add('open');
+      });
+    });
+
+    function closeModal(){
+      modal.classList.remove('open');
+      modalImg.src = '';
+    }
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeModal(); });
+  </script>
 </body>
 </html>
