@@ -7,6 +7,20 @@
   <meta name="description" content="Portfolio of Raiyan Meem Saiem — photos, certificates, and personal work." />
 
   <style>
+    .twocol{
+  display:grid;
+  grid-template-columns: 120px 1fr;
+  gap:10px 14px;
+  margin-top:6px;
+  line-height:1.8;
+}
+.twocol .k{
+  color:var(--muted);
+  font-weight:700;
+}
+.twocol .v a{
+  text-decoration:none;
+}
     :root{
      --bg:#07070a;
   --panel:#0d0e12;
@@ -302,7 +316,7 @@
     <section id="contact">
       <div class="section-title">
         <h2>Contact</h2>
-        <p>Simple and premium.</p>
+        
       </div>
 
       <div class="cols">
@@ -317,12 +331,19 @@
 
         <div class="tile">
           <h3>Social</h3>
-         <p>
- <p>
-  WhatsApp: <a href="https://wa.me/8801601236781" target="_blank">+8801601236781</a><br/>
-  Email: <a href="mailto:raiyan.m.saiem@gmail.com">raiyan.m.saiem@gmail.com</a><br/>
-  Facebook: <a href="https://www.facebook.com/raiyan.m.saiem" target="_blank">raiyan.m.saiem</a>
-</p>
+         
+ 
+  <div class="twocol">
+  <div class="k">WhatsApp</div>
+  <div class="v"><a href="https://wa.me/8801601236781" target="_blank" rel="noopener">+8801601236781</a></div>
+
+  <div class="k">Email</div>
+  <div class="v"><a href="mailto:raiyan.m.saiem@gmail.com">raiyan.m.saiem@gmail.com</a></div>
+
+  <div class="k">Facebook</div>
+  <div class="v"><a href="https://www.facebook.com/raiyan.m.saiem" target="_blank" rel="noopener">raiyan.m.saiem</a></div>
+</div>
+
           <div class="meta">
             <span class="tag">Message anytime</span>
           </div>
